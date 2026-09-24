@@ -1,11 +1,25 @@
-<?Php
+﻿<?Php
   use setasign\Fpdi\Fpdi;
   require_once('vendor/autoload.php');
 
-  $target_pdf = "/tmp/pdf2lpt.pdf";
+  // 
+  // 用日期決定印哪個版本
+  //
+  $day = date('d');
+  $i = $day % 3;
+  if ($i == 1) {
+    $template_pdf = __DIR__."/templates/Template-Parrot.pdf";  
+  } else if ($i == 2) {
+    $template_pdf = __DIR__."/templates/Template-Umbrella.pdf";
+  } else {
+    $template_pdf = __DIR__."/templates/Template-Default.pdf";
+  }
   //$template_pdf = "/usr/share/cups/data/default-testpage.pdf";  
-  //$template_pdf = __DIR__."/templates/Template-Parrot.pdf";
-  $template_pdf = __DIR__."/templates/Template-Umbrella.pdf";
+
+  //
+  // 初始變數
+  //
+  $target_pdf = "/tmp/pdf2lpt.pdf";
   $font_name = "Courier";
   $display_x = 40;
   $display_y = 160;
